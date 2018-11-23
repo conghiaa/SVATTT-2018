@@ -1,9 +1,9 @@
 # PyLock (PE Reversing)
 > Do mình không chuẩn bị tốt nên bài re này mình không làm được (Một phần mình chưa gặp bao giờ + Kĩ năng google kém). Dù có writeup về bài này rồi no thôi mình viết lại luyện kĩ năng tý.
 ## File analysis
-unlock.exe: PE32+ executable (console) x86-64, for MS Windows
+__unlock.exe: PE32+ executable (console) x86-64, for MS Windows__
 
-Một bài 'key validation'. Sau khi cho vào IDA thì disassembly code của nó khá chi là "không đọc được".
+Một bài '__key validation__'. Sau khi cho vào IDA thì disassembly code của nó khá chi là "không đọc được".
 Nếu để ý tên file cũng như gợi ý thì có thể đoán exe này được viết = python và cần phải convert nó về python code.(Dĩ nhiên mình có thể kết luận vậy bởi vì mh vừa ms làm 1 bài python-packed exe trên ctftime)
 
 Câu hỏi là nếu chưa gặp bao giờ + nó được pack bằng ngôn ngữ khác thì sao?
@@ -22,7 +22,7 @@ Sau khi kiểm tra các files trong folder có những loại sau:
 
 Rõ ràng là compiled python là cái ta quan tâm nhất. Ta thử decompile with [Uncompyle6](https://github.com/rocky/python-uncompyle6) xem có gì không.
 
-Qua kiểm tra thì chủ yếu là code python của thư viện nào đó. No mà nếu để ý tên module __c:\python27\Lib\site-packages\PyInstaller\loader\pyimod01_os_path.py__ thì some search google kết luận được rằng PyInstaller là lib pack .py -> .exe
+Qua kiểm tra thì chủ yếu là code python của thư viện nào đó. No mà nếu để ý tên module __c:\python27\Lib\site-packages\PyInstaller\loader\pyimod01_os_path.py__ thì some search google kết luận được rằng PyInstaller là library mà pack .py -> .exe
 
 Oke. Mình đã biết file bắt nguồn từ đâu @@
 
@@ -30,8 +30,8 @@ Oke. Mình đã biết file bắt nguồn từ đâu @@
 
 Google "How to reverse PyInstaller binary" sẽ cho biết các bước làm ([one Instance](https://reverseengineering.stackexchange.com/questions/160/how-do-you-reverse-engineer-an-exe-compiled-with-pyinstaller)).
 
-1. __Use pyi-archive_viewer to extract unlock and PyLock in PYZ-00.pyz__
-2. __Vì extracted pyc bị mất file signature.__
+1. __Use pyi-archive_viewer to extract unlock in unlock.exe and PyLock in PYZ-00.pyz__
+2. __Vì extracted .pyc files bị mất file signature.__
 
 Đây là unlock lúc mới extract:
 
@@ -190,3 +190,7 @@ if __name__ == "__main__":
     flag = "".join([chr(i + 0x40) for i in flag])
     print flag
 ```
+
+=)) __THISISTOOEASYEASYEASY__
+
+> Có lẽ hơi dài rồi những dẫu sao thì cũng tốt cho những ai mới bắt đầu như mình. Bye

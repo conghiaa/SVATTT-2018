@@ -194,3 +194,6 @@ if __name__ == "__main__":
 =)) __THISISTOOEASYEASYEASY__
 
 > Có lẽ hơi dài rồi những dẫu sao thì cũng tốt cho những ai mới bắt đầu như mình. Bye
+
+## References
+[https://github.com/henriknero/writeups/blob/master/freeze/README.md](https://github.com/henriknero/writeups/blob/master/freeze/README.md)

@@ -2,7 +2,7 @@
 > Phát hiện ra lỗ hổng bài này easy còn khai thác thì hơi trick 1 tý.Có 1 vài thứ cũng hữu ích khi khai thác bài này.
 
 ## Format string detection
-Binary nó reimplement lại string.encode('hex'), string.decode('hex') in python2.Việc nhập input/output xuất ra khá tự nhiên nên thử  buffer-overflow + format string thì thấy bị dính fmt thui.
+Chương trình reimplement lại string.encode('hex'), string.decode('hex') in python2.Khả năng cao là buffer-overflow hoặc format string. Qua kiểm tra thì format string rõ ràng
 
 ## Security check
 Encoder: ELF __64-bit__ LSB __shared object__ x86-64, version 1 (SYSV), __dynamically linked__, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=c81f353a80be2437a0357b9b030cebe1935eca59, stripped
@@ -17,7 +17,9 @@ __root@kali:~/Desktop/tmp/SVATTT-2018/Encoder# checksec --file ./Encoder __
 Vậy là một binary bật full chế  độ protection
 ```
 ## Binary analysis
-> Vs IDA Pro thì F5 reveal gần như tất cả.No mình ở dùng [radare2](https://radare.gitbooks.io/radare2book/) cho nó challange 1 tý.Sử  dụng radare2 như thế nào thì m.n tự tìm hiểu n.
+> Vs IDA Pro thì F5 reveal gần như tất cả.No mình ở dùng [radare2](https://radare.gitbooks.io/radare2book/) cho nó challange 1 tý.
+
+__ Ai ko thích đọc assembly code thì chuyển qua phần exploitation lun__
 
 Mình comments, đặt tên hàm cũng khá cẩn thận nên m.n cố gắng đọc.
 
